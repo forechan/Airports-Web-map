@@ -8,6 +8,7 @@
 
     </style>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 </head>
 <body>
 html, body, #map { width: 100%; height: 100%; margin: 0; background: #fff;
@@ -18,7 +19,6 @@ html, body, #map { width: 100%; height: 100%; margin: 0; background: #fff;
       minZoom: 3,
       detectRetina: true // detect whether the sceen is high resolution or not.
   });
-  // 2. Add a base map.
   L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(mymap)
 
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Airports in U.S.</title>
+    <title>Cell Towers in Oregon (2009)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -76,7 +76,7 @@
     }
 
     // Get GeoJSON and put on it on the map when it loads
-    tsairpor= L.geoJson.ajax("assets/airports.geojson", {
+    cellTowers= L.geoJson.ajax("assets/cell_towers.geojson", {
         // assign a function to the onEachFeature parameter of the cellTowers object.
         // Then each (point) feature will bind a popup window.
         // The content of the popup window is the value of `feature.properties.company`
@@ -101,8 +101,8 @@
     }).addTo(mymap);
 
     // create the county layer
+    L.geoJson.ajax("assets/airports.geojson").addTo(mymap);
     L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
-
     // 6. Set function for color ramp
     colors = chroma.scale('OrRd').colors(5); //colors = chroma.scale('OrRd').colors(5)
     function setColor(density) {
@@ -128,7 +128,11 @@ function style(feature) {
 }
 
 // 8. Add county polygons
-L.geoJson.ajax("assets/counties.geojson", {
+L.geoJson.ajax("assets/us-states.geojson", {
+    style: style
+}).addTo(mymap);
+
+L.geoJson.ajax("assets/airports.geojson", {
     style: style
 }).addTo(mymap);
 

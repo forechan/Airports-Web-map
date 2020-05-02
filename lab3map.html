@@ -89,7 +89,7 @@
     attribution: 'Cell Tower Data &copy; Map Cruzin | Oregon counties &copy; Oregon Explorer | Base Map &copy; CartoDB | Made By Bo Zhao'
   }).addTo(mymap);
 
-  colors = chroma.scale('Blues').mode('lch').colors(4);
+  colors = chroma.scale('OrRd').mode('lch').colors(5);
   function setColor(total) {
   var id = 0;
   if (total > 100) { id = 4; }

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Cell Towers in Oregon (2009)</title>
+    <title>Airports in US</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -54,9 +54,9 @@
     // 1. Create a map object.
     var mymap = L.map('map', {
         center: [44.13, -119.93],
-        zoom: 7,
-        maxZoom: 10,
-        minZoom: 3,
+        zoom: 3,
+        maxZoom: 7,
+        minZoom: 2,
         detectRetina: true});
 
     // 2. Add a base map.
@@ -74,31 +74,6 @@
     for (i = 0; i < 9; i++) {
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
-
-    // Get GeoJSON and put on it on the map when it loads
-    cellTowers= L.geoJson.ajax("assets/cell_towers.geojson", {
-        // assign a function to the onEachFeature parameter of the cellTowers object.
-        // Then each (point) feature will bind a popup window.
-        // The content of the popup window is the value of `feature.properties.company`
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.company);
-        },
-        pointToLayer: function (feature, latlng) {
-            var id = 0;
-            if (feature.properties.company == "New Cingular") { id = 0; }
-            else if (feature.properties.company == "Cellco")  { id = 1; }
-            else if (feature.properties.company == "RCC Minnesota")  { id = 2; }
-            else if (feature.properties.company == "Verizon")  { id = 3; }
-            else if (feature.properties.company == "US Cellular")  { id = 4; }
-            else if (feature.properties.company == "Hood River Cellular")  { id = 5; }
-            else if (feature.properties.company == "Medford Cellular")  { id = 6; }
-            else if (feature.properties.company == "Oregon RSA")  { id = 7; }
-            else { id = 8;} // "Salem Cellular"
-            //<i class="fas fa-broadcast-tower"></i>
-            return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-rss marker-color-' + (id + 1).toString() })});
-        },
-        attribution: 'Cell Tower Data &copy; Map Cruzin | Oregon counties &copy; Oregon Explorer | Base Map &copy; CartoDB | Made By Bo Zhao'
-    }).addTo(mymap);
 
     // create the county layer
     L.geoJson.ajax("assets/airports.geojson").addTo(mymap);

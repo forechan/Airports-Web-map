@@ -75,6 +75,10 @@
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
+    L.geoJson.ajax("assets/airports.geojson", {
+        style: style
+    }).addTo(mymap);
+
     onEachFeature: function (feature, layer) {
         layer.bindPopup(feature.properties.CNTL_TWR);
     },
@@ -119,9 +123,6 @@ L.geoJson.ajax("assets/us-states.geojson", {
     style: style
 }).addTo(mymap);
 
-L.geoJson.ajax("assets/airports.geojson", {
-    style: style
-}).addTo(mymap);
 
 // 9. Create Leaflet Control Object for Legend
 var legend = L.control({position: 'topright'});

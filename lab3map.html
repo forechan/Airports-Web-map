@@ -64,11 +64,12 @@
 
     // 3. Add cell towers GeoJSON Data
     // Null variable that will hold cell tower data
-    var airports = null;
+    var celltowers = null;
 
+    var colors = chroma.scale('Dark2').mode('lch').colors(9);
 
     // 4. build up a set of colors from colorbrewer's dark2 category
-    var colors = chroma.scale('Blues').colors(4);
+    colors = chroma.scale('Blues').mode('lch').colors(4);
 
     // 5. dynamically append style classes to this page. This style classes will be used for colorize the markers.
     for (i = 0; i < 9; i++) {

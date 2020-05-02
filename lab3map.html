@@ -64,22 +64,20 @@
 
     // 3. Add cell towers GeoJSON Data
     // Null variable that will hold cell tower data
-    var celltowers = null;
+    var airportss = null;
 
-    var colors = chroma.scale('Dark2').mode('lch').colors(9);
+    var colors = chroma.scale('Dark2').mode('lch').colors(2);
 
-    // 4. build up a set of colors from colorbrewer's dark2 category
-    colors = chroma.scale('Blues').mode('lch').colors(4);
 
     // 5. dynamically append style classes to this page. This style classes will be used for colorize the markers.
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < 2; i++) {
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
     airports= L.geoJson.ajax("assets/airports.geojson", {
 
     onEachFeature: function (feature, layer) {
-        layer.bindPopup(feature.properties.CNTL_TWR);
+        layer.bindPopup(feature.properties.AIRPORTTOWER);
     },
     pointToLayer: function (feature, latlng) {
         var id = 0;
@@ -90,9 +88,15 @@
     },
     attribution: 'Cell Tower Data &copy; Map Cruzin | Oregon counties &copy; Oregon Explorer | Base Map &copy; CartoDB | Made By Bo Zhao'
   }).addTo(mymap);
+
+  olors = chroma.scale('Blues').mode('lch').colors(4);
     // create the county layer
+
     L.geoJson.ajax("assets/airports.geojson").addTo(mymap);
-    L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
+    var states = null;
+     states = L.geoJson.ajax("assets/us-states.geojson", {
+         style: style
+     }).addTo(mymap);
     // 6. Set function for color ramp
     colors = chroma.scale('OrRd').colors(5); //colors = chroma.scale('OrRd').colors(5)
     function setColor(density) {

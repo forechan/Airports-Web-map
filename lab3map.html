@@ -76,16 +76,20 @@
 
     airports = L.geoJson.ajax("assets/airports.geojson", {
 
-      onEachFeature: function (feature, layer) {
-          layer.bindPopup(feature.properties.CNTL_TWR);
-      },
 
-      pointToLayer: function (feature, latlng) {
-          var id = 0;
-          if (feature.properties.CNTL_TWR == "Y") { id = 0; }
-          else { id = 1;} // "Airport has no Control Tower"
-          return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
-      },
+
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup(feature.properties.CNTL_TWR);
+    },
+    pointToLayer: function (feature, latlng) {
+        var id = 0;
+        if (feature.properties.CNTL_TWR == "Y") { id = 0; }
+        else if (feature.properties.CNTL_TWR == "N") { id = 1;} // "Salem Cellular"
+        //<i class="fas fa-broacast-tower"></i>
+        return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
+    },
+    attribution: 'Cell Tower Data &copy; Map Cruzin | Oregon counties &copy; Oregon Explorer | Base Map &copy; CartoDB | Made By Bo Zhao'
+  }).addTo(mymap);
 
   colors = chroma.scale('Blues').mode('lch').colors(4);
   function setColor(total) {

@@ -54,9 +54,9 @@
     // 1. Create a map object.
     var mymap = L.map('map', {
         center: [44.13, -119.93],
-        zoom: 3,
-        maxZoom: 7,
-        minZoom: 2,
+        zoom: 4,
+        maxZoom: 10,
+        minZoom: 3,
         detectRetina: true});
 
     // 2. Add a base map.
@@ -89,8 +89,27 @@
     attribution: 'Cell Tower Data &copy; Map Cruzin | Oregon counties &copy; Oregon Explorer | Base Map &copy; CartoDB | Made By Bo Zhao'
   }).addTo(mymap);
 
-  olors = chroma.scale('Blues').mode('lch').colors(4);
-    // create the county layer
+  colors = chroma.scale('Blues').mode('lch').colors(4);
+  function setColor(total) {
+  var id = 0;
+  if (total > 100) { id = 4; }
+  else if (total > 25 && density <= 50) { id = 3; }
+  else if (density > 50 && density <= 75) { id = 2; }
+  else if (density > 75 &&  density <= 100) { id = 1; }
+  else  { id = 0; }
+  return colors[id];
+}
+
+function style(feature) {
+    return {
+        fillColor: setColor(feature.properties.total),
+        fillOpacity: 0.4,
+        weight: 2,
+        opacity: 1,
+        color: '#b4b4b4',
+        dashArray: '4'
+    };
+}
 
     L.geoJson.ajax("assets/airports.geojson").addTo(mymap);
     var states = null;

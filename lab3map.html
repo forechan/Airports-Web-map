@@ -64,7 +64,7 @@
 
     // 3. Add cell towers GeoJSON Data
     // Null variable that will hold cell tower data
-    var airportss = null;
+    var airports = null;
 
     var colors = chroma.scale('Dark2').mode('lch').colors(2);
 
@@ -74,7 +74,9 @@
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
-    airports= L.geoJson.ajax("assets/airports.geojson", {
+    airports = L.geoJson.ajax("assets/airports.geojson", {
+
+
 
     onEachFeature: function (feature, layer) {
         layer.bindPopup(feature.properties.AIRPORTTOWER);

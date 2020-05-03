@@ -71,10 +71,9 @@
 
 
     // 4. build up a set of colors from colorbrewer's dark2 category
-    var colors = chroma.scale('Dark2').mode('lch').colors(2);
-
+    var colors = chroma.scale('Dark2').mode('lch').colors(9);
     // 5. dynamically append style classes to this page. This style classes will be used for colorize the markers.
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 9; i++) {
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
@@ -96,16 +95,12 @@
         attribution: 'Airports &copy; Map Cruzin | U.S. States &copy; Cell Towers | Base Map &copy; ESRI | Made By Foresty Chan'
     }).addTo(mymap);
 
-
-
-
-
     // 6. Set function for color ramp
     colors = chroma.scale('Blues').colors(5);
 
     function setColor(total) {
         var id = 0;
-        if (total > 60) { id = 4; }
+        if (total > 60) { id = 3; }
         else if (total > 30 && count <= 45) { id = 3; }
         else if (total > 15  && count <= 30 ) { id = 2; }
         else if (total > 0 &&  count <= 15) { id = 1; }
@@ -117,7 +112,7 @@
     // 7. Set style function that sets fill color.md property equal to cell tower density
     function style(feature) {
         return {
-            fillColor: setColor(feature.properties.count),
+            fillColor: setColor(feature.properties.total),
             fillOpacity: 0.6,
             weight: 2,
             opacity: 1,
@@ -148,9 +143,8 @@
         div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>30-45</p>';
         div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>15-30</p>';
         div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>0-15</p>';
-        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p> 0- 15</p>';
         div.innerHTML += '<hr><b><h2>Air Traffic Towers</h2><b><br />';
-        div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p>Yes Control</p>';
+        div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p>Yes Control Tower</p>';
         div.innerHTML += '<i class="fa fa-plane marker-color-2"></i><p>No Control Tower</p>';
         // Return the Legend div containing the HTML content
         return div;

@@ -124,7 +124,9 @@
 
     // 8. Add States layer in the US
     // create state variable, and assign null value
-        L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
+
+    var states = null;
+        states = L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
         L.geoJson.ajax("assets/counties.us-states", {
             style: style
         }).addTo(mymap);

@@ -96,14 +96,15 @@
            }).addTo(mymap);
 
     // 6. Set function for color ramp
-    colors = chroma.scale('OrRd').colors(5);
+    // 6. Set function for color ramp
+    colors = chroma.scale('Purples').colors(5);
 
     function setColor(count) {
         var id = 0;
-        if (count > 60) { id = 4; }
-        else if (count > 30 && count <= 45) { id = 3; }
-        else if (count > 15  && count <= 30 ) { id = 2; }
-        else if (count > 0 &&  count <= 15) { id = 1; }
+        if (count > 50) { id = 4; }
+        else if (count > 35 && count <= 50) { id = 3; }
+        else if (count > 15 && count <= 35 ) { id = 2; }
+        else if (count > 5 &&  count <= 15) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }
@@ -113,7 +114,7 @@
     function style(feature) {
         return {
             fillColor: setColor(feature.properties.count),
-            fillOpacity: 0.4,
+            fillOpacity: 0.6,
             weight: 2,
             opacity: 1,
             color: '#b4b4b4',

@@ -101,10 +101,10 @@
 
     function setColor(count) {
         var id = 0;
-        if (count > 50) { id = 4; }
-        else if (count > 35 && count <= 50) { id = 3; }
-        else if (count > 15 && count <= 35 ) { id = 2; }
-        else if (count > 5 &&  count <= 15) { id = 1; }
+        if (count > 60) { id = 4; }
+        else if (count > 40 && count <= 60) { id = 3; }
+        else if (count > 20 && count <= 40) { id = 2; }
+        else if (count > 5 &&  count <= 20) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }
@@ -141,9 +141,9 @@
         var div = L.DomUtil.create('div', 'legend');
         div.innerHTML += '<b><h2>Total Number of Airports</h2></b><br />';
         div.innerHTML += '<i style="background: ' + colors[4] + '; opacity: 0.5"></i><p>60+</p>';
-        div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>30-45</p>';
-        div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>15-30</p>';
-        div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>0-15</p>';
+        div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>40-60</p>';
+        div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>20-40</p>';
+        div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>5-20</p>';
         div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p>0</p>';
         div.innerHTML += '<hr><b><h2>Air Traffic Towers</h2><b><br />';
         div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p>Yes Control Tower</p>';

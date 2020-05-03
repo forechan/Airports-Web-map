@@ -101,7 +101,7 @@
 
 
     // 6. Set function for color ramp
-    colors = chroma.scale('Purples').colors(5);
+    colors = chroma.scale('Blues').colors(5);
 
     function setColor(total) {
         var id = 0;
@@ -143,7 +143,7 @@
 
         // Create Div Element and Populate it with HTML
         var div = L.DomUtil.create('div', 'legend');
-        div.innerHTML += '<b><h2>Number of Airports</h2></b><br />';
+        div.innerHTML += '<b><h2>Total Number of Airports</h2></b><br />';
         div.innerHTML += '<i style="background: ' + colors[4] + '; opacity: 0.5"></i><p>60+</p>';
         div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>30-45</p>';
         div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>15-30</p>';

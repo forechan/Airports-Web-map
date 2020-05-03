@@ -98,12 +98,12 @@
     // 6. Set function for color ramp
     colors = chroma.scale('Blues').colors(5);
 
-    function setColor(total) {
+    function getColor(total) {
         var id = 0;
         if (total > 60) { id = 3; }
-        else if (count > 30 && count <= 45) { id = 3; }
-        else if (count > 15  && count <= 30 ) { id = 2; }
-        else if (count > 0 &&  count <= 15) { id = 1; }
+        else if (total > 30 && count <= 45) { id = 3; }
+        else if (total > 15  && count <= 30 ) { id = 2; }
+        else if (total > 0 &&  count <= 15) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }
@@ -112,7 +112,7 @@
     // 7. Set style function that sets fill color.md property equal to cell tower density
     function style(feature) {
         return {
-            fillColor: setColor(feature.properties.count),
+            fillColor: getColor(feature.properties.total),
             fillOpacity: 0.4,
             weight: 2,
             opacity: 1,

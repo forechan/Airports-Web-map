@@ -101,10 +101,10 @@
 
     function setColor(count) {
         var id = 0;
-        if (count > 60) { id = 4; }
-        else if (count > 40 && count <= 60) { id = 3; }
-        else if (count > 20 && count <= 40) { id = 2; }
-        else if (count > 5 &&  count <= 20) { id = 1; }
+        if (count > 100) { id = 4; }
+        else if (count > 60 && count <= 100) { id = 3; }
+        else if (count > 30 && count <= 60) { id = 2; }
+        else if (count > 1 &&  count <= 30) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }

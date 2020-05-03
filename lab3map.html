@@ -98,7 +98,7 @@
     // 6. Set function for color ramp
     colors = chroma.scale('Blues').colors(5);
 
-    function setColor(total) {
+    function getColor(total) {
         var id = 0;
         if (total > 60) { id = 3; }
         else if (total > 30 && count <= 45) { id = 3; }
@@ -112,7 +112,7 @@
     // 7. Set style function that sets fill color.md property equal to cell tower density
     function style(feature) {
         return {
-            fillColor: setColor(feature.properties.total),
+            fillColor: getColor(feature.properties.total),
             fillOpacity: 0.4,
             weight: 2,
             opacity: 1,
@@ -143,6 +143,7 @@
         div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>30-45</p>';
         div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>15-30</p>';
         div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>0-15</p>';
+        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p>0</p>
         div.innerHTML += '<hr><b><h2>Air Traffic Towers</h2><b><br />';
         div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p>Yes Control Tower</p>';
         div.innerHTML += '<i class="fa fa-plane marker-color-2"></i><p>No Control Tower</p>';

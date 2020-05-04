@@ -71,9 +71,9 @@
 
 
     // 4. build up a set of colors from colorbrewer's dark2 category
-      var colors = chroma.scale('Pastel1').mode('lch').colors(9);
+      var colors = chroma.scale('Pastel1').mode('lch').colors(5);
     // 5. dynamically append style classes to this page. This style classes will be used for colorize the markers.
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < 5; i++) {
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
@@ -124,6 +124,8 @@
 
     // 8. Add States layer in the US
     // create state variable
+
+    var states = null; 
         L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
         L.geoJson.ajax("assets/counties.us-states",{
             style: style

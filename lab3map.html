@@ -71,9 +71,9 @@
 
 
     // 4. build up a set of colors from colorbrewer's dark2 category
-      var colors = chroma.scale('Pastel1').mode('lch').colors(5);
+      var colors = chroma.scale('Pastel1').mode('lch').colors(9);
     // 5. dynamically append style classes to this page. This style classes will be used for colorize the markers.
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 9; i++) {
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
@@ -97,7 +97,7 @@
            }).addTo(mymap);
 
     // 6. Set function for color ramp
-    colors = chroma.scale('Blues').colors(5);
+    colors = chroma.scale('Blues').colors(9);
 
     function setColor(count) {
         var id = 0;

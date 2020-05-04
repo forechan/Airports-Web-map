@@ -126,7 +126,7 @@
     // create state variable
 
     var states = null;
-        L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
+        states = L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
         L.geoJson.ajax("assets/counties.us-states",{
             style: style
         }).addTo(mymap);

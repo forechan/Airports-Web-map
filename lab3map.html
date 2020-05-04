@@ -100,12 +100,12 @@
     // 6. Set function for color ramp
     colors = chroma.scale('Blues').colors(5);
 
-    function setColor(density) {
+    function setColor(count) {
         var id = 0;
-        if (density > 100) { id = 4; }
-        else if (density > 60 && density <= 100) { id = 3; }
-        else if (density > 30 && density <= 60) { id = 2; }
-        else if (density > 1 &&  density <= 30) { id = 1; }
+        if (count > 100) { id = 4; }
+        else if (count > 60 && count <= 100) { id = 3; }
+        else if (count > 30 && count <= 60) { id = 2; }
+        else if (count > 1 && count <= 30) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }

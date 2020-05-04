@@ -89,7 +89,7 @@
                pointToLayer: function (feature, latlng) {
                    var id = 0;
                    if (feature.properties.CNTL_TWR == "Y") { id = 0; }
-                   else if (feature.properties.CNTL_TWR == "N") { id = 1;} // "Airport has no Control Tower"
+                   else if (feature.properties.CNTL_TWR == "N") { id = 1;} // "Airport has no control tower"
                    else { id = 2; }
                    return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
                },
@@ -98,7 +98,7 @@
 
     // 6. Set function for color ramp
     // 6. Set function for color ramp
-    colors = chroma.scale('Blues').colors(4);
+    colors = chroma.scale('Blues').colors(5);
 
     function setColor(count) {
         var id = 0;
@@ -124,9 +124,7 @@
     }
 
     // 8. Add States layer in the US
-    // create state variable, and assign null value
-
-
+    // create state variable
         L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
         L.geoJson.ajax("assets/counties.us-states", {
             style: style

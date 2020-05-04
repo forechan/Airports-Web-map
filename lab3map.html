@@ -98,7 +98,7 @@
 
     // 6. Set function for color ramp
     // 6. Set function for color ramp
-    colors = chroma.scale('Blues').colors(5);
+    colors = chroma.scale('Blues').colors(4);
 
     function setColor(count) {
         var id = 0;
@@ -135,7 +135,7 @@
 
 
     // 9. Create Leaflet Control Object for Legend
-    var legend = L.control({position: 'bottomleft'});
+    var legend = L.control({position: 'bottomright'});
 
     // 10. Function that runs when legend is added to map
     legend.onAdd = function () {

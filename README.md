@@ -1,8 +1,11 @@
 # lab3
 
+<img src = "https://i.ibb.co/5MWwRhN/Capture1.jpg">
+
+
 This lab was created so we could learn how to make an interactive web map. Although the only interaction is clicking on an airplane icon and a popup will apepear.
 
-Here is a link to the [interactive map](https://forechan.github.io/Airports-Web-map/lab3map.html) 
+Here is a link to the [interactive map](https://forechan.github.io/Airports-Web-map/lab3map.html)
 
 # Primary functions
 
@@ -18,3 +21,5 @@ We use different libraries in here to help certain styles. For example we used a
 We have the us-states.geojson file and the airports.geojson file
 
 # Acknowledgement
+
+Thank you Professor Zhao for helping to create a tutorial on web maps.

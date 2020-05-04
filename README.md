@@ -2,6 +2,8 @@
 
 This lab was created so we could learn how to make an interactive web map. Although the only interaction is clicking on an airplane icon and a popup will apepear.
 
+Here is a link to the [interactive map](https://forechan.github.io/Airports-Web-map/lab3map.html) 
+
 # Primary functions
 
 This map was created to show the airports in the U.S.
@@ -9,7 +11,7 @@ It was made so that when you click on an airport icon it will have a small pop u
 
 # Libraries
 
-We use different libraries in here to help certain styles. For example we used a font library to change the font from Times New Romane. We also used icons from font awesome. Also I used a basemap from leaflet from the leaflet website. 
+We use different libraries in here to help certain styles. For example we used a font library to change the font from Times New Romane. We also used icons from font awesome. Also I used a basemap from leaflet from the leaflet website.
 
 # Data sources
 

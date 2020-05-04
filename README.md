@@ -9,10 +9,10 @@ It was made so that when you click on an airport icon it will have a small pop u
 
 # Libraries
 
-We use different libraries in here to help certain styles. For example we used a font library to change the font from Times New Romane. We also used icons from font awesome. 
+We use different libraries in here to help certain styles. For example we used a font library to change the font from Times New Romane. We also used icons from font awesome. Also I used a basemap from leaflet from the leaflet website. 
 
 # Data sources
 
-We have the us-states.geojson file and the airports.geojson file provided by Professor Zhao. Also I used a basemap from leaflet from
+We have the us-states.geojson file and the airports.geojson file
 
 # Acknowledgement

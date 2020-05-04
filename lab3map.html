@@ -65,7 +65,7 @@
     // 2. Add a base map.
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}').addTo(mymap);
 
-    // 3. Add cell towers GeoJSON Data
+    // 3.
     // Null variable that will hold cell tower data
     var cellTowers = null;
 
@@ -97,15 +97,14 @@
            }).addTo(mymap);
 
     // 6. Set function for color ramp
-    // 6. Set function for color ramp
     colors = chroma.scale('Blues').colors(5);
 
     function setColor(count) {
         var id = 0;
         if (count > 100) { id = 4; }
-        else if (count > 60 && count <= 100) { id = 3; }
-        else if (count > 30 && count <= 60) { id = 2; }
-        else if (count > 1 && count <= 30) { id = 1; }
+        else if (count > 40 && count <= 100) { id = 3; }
+        else if (count > 20 && count <= 40) { id = 2; }
+        else if (count > 1 && count <= 20) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }

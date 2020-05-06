@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Airports in the United States</title>
+    <title>Airports in U.S.</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -68,6 +68,7 @@
     // 3. Add airports GeoJSON Data
     // Null variable that will hold cell tower data
     var airports = null;
+    var towers = null;
 
     // 4. build up a set of colors from colorbrewer's dark2 category
     var colors = chroma.scale('Pastel1').mode('lch').colors(9);

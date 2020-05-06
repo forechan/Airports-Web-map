@@ -1,6 +1,6 @@
 # lab3
 
-<img src = "https://i.ibb.co/gVSYpFT/Capture.jpg">
+<img src = "https://i.ibb.co/nBz2Xkr/Capture2.png">
 
 
 This lab was created so we could learn how to make an interactive web map. Although the only interaction is clicking on an airplane icon and a popup will apepear.

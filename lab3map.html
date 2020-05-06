@@ -126,16 +126,11 @@
     // create state variable
 
     var states = null;
-<<<<<<< HEAD
-    states = L.geoJson.ajax("assets/us-states.geojson", {
-        style: style
-    }).addTo(mymap);
-=======
-        states = L.geoJson.ajax("assets/us-states.geojson").
+        states = L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
+        L.geoJson.ajax("assets/counties.us-states",{
             style: style
         }).addTo(mymap);
 
->>>>>>> 01e0e64560c3d6b8ed2635fd602a5e25a9f75f05
 
 
     // 9. Create Leaflet Control Object for Legend
@@ -151,7 +146,7 @@
         div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>40-100</p>';
         div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>20-40</p>';
         div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>1-20</p>';
-        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p>0-1</p>';
+        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p>0</p>';
         div.innerHTML += '<hr><b><h2>Air Traffic Towers</h2><b><br />';
         div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p>Yes Control Tower</p>';
         div.innerHTML += '<i class="fa fa-plane marker-color-2"></i><p>No Control Tower</p>';

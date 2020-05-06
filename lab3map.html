@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Airports in U.S</title>
+    <title>Airports in the United States</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -14,7 +14,7 @@
             line-height: 16px;
             width: 140px;
             color: #333333;
-            font-family: 'Titillium Web', cursive;
+            font-family: 'Titillium Web', sans-serif;
             padding: 6px 8px;
             background: white;
             background: rgba(255,255,255,0.5);
@@ -38,8 +38,8 @@
         }
 
         .legend p {
-            font-size: 16px;
-            line-height: 18px;
+            font-size: 12px;
+            line-height: 16px;
             margin: 0;
         }
 
@@ -56,7 +56,7 @@
 
     // 1. Create a map object.
     var mymap = L.map('map', {
-        center: [44.13, -119.93],
+        center: [45.13, -119.93],
         zoom: 4,
         maxZoom: 10,
         minZoom: 3,
@@ -65,44 +65,42 @@
     // 2. Add a base map.
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}').addTo(mymap);
 
-    // 3.
+    // 3. Add cell towers GeoJSON Data
     // Null variable that will hold cell tower data
-    var cellTowers = null;
-
+    var airPortTowers = null;
 
     // 4. build up a set of colors from colorbrewer's dark2 category
-      var colors = chroma.scale('Pastel1').mode('lch').colors(9);
+    var colors = chroma.scale('Pastel1').mode('lch').colors(9);
+
     // 5. dynamically append style classes to this page. This style classes will be used for colorize the markers.
     for (i = 0; i < 9; i++) {
         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
     // Get GeoJSON and put on it on the map when it loads
-    airports= L.geoJson.ajax("assets/airports.geojson", {
-        // assign a function to the onEachFeature parameter of the cellTowers object.
-        // Then each (point) feature will bind a popup window.
-        // The content of the popup window is the value of `feature.properties.company`
+    airPort_Name= L.geoJson.ajax("assets/airports.geojson", {
         onEachFeature: function (feature, layer) {
-                   layer.bindPopup(feature.properties.CNTL_TWR);
-               },
+            layer.bindPopup(feature.properties.AIRPT_NAME);
+        },
+        pointToLayer: function (feature, latlng) {
+            var id = 0;
+            if (feature.properties.CNTL_TWR == "Y") { id = 0; }
+            else if (feature.properties.CNTL_TWR == "N")  { id = 1; }
+            return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-paper-plane marker-color-' + (id + 1).toString() })});
+        },
+        attribution: 'Airport Data &copy; Data.gov | US States &copy; Mike Bostock | Base Map &copy; CartoDB | Made By Xiao Ye Chen'
+    }).addTo(mymap);
 
-               pointToLayer: function (feature, latlng) {
-                   var id = 0;
-                   if (feature.properties.CNTL_TWR == "Y") { id = 0; }
-                   else if (feature.properties.CNTL_TWR == "N") { id = 1;} // "Airport has no control tower"
-                   else { id = 2; }
-                   return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
-               },
-               attribution: 'Airports &copy; Data.gov| US States &copy; Mike Bostock D3 | Base Map &copy; ESRI | Made By Bo Zhao'
-           }).addTo(mymap);
 
     // 6. Set function for color ramp
-    colors =chroma.scale('Blues').colors(9);
+    colors = chroma.scale('Blues').colors(5); //colors = chroma.scale('RdPu').colors(5);
 
     function setColor(count) {
-        else if (count > 40 && count <= 100) { id = 3; }
-        else if (count > 20 && count <= 40) { id = 2; }
-        else if (count > 1 && count <= 20) { id = 1; }
+        var id = 0;
+        if (count > 60) { id = 4; }
+        else if (density > 40 && density <= 60) { id = 3; }
+        else if (density > 20 && density <= 40) { id = 2; }
+        else if (density > 0 &&  density <= 20) { id = 1; }
         else  { id = 0; }
         return colors[id];
     }
@@ -113,41 +111,39 @@
         return {
             fillColor: setColor(feature.properties.count),
             fillOpacity: 0.4,
-            weight: 1,
+            weight: 2,
             opacity: 1,
             color: '#b4b4b4',
             dashArray: '4'
         };
     }
 
-    // 8. Add States layer in the US
-    // create state variable
 
+    // 8. Add county polygons
+    // create counties variable, and assign null to it.
     var states = null;
-        states = L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
-        L.geoJson.ajax("assets/counties.us-states",{
-            style: style
-        }).addTo(mymap);
-
+    states = L.geoJson.ajax("assets/us-states.geojson",{
+        style: style
+    }).addTo(mymap);
 
 
     // 9. Create Leaflet Control Object for Legend
-    var legend = L.control({position: 'bottomleft'});
+    var legend = L.control({position: 'bottomright'});
 
     // 10. Function that runs when legend is added to map
     legend.onAdd = function () {
 
         // Create Div Element and Populate it with HTML
         var div = L.DomUtil.create('div', 'legend');
-        div.innerHTML += '<b><h2>Total Number of Airports</h2></b><br />';
-        div.innerHTML += '<i style="background: ' + colors[4] + '; opacity: 0.5"></i><p>100+</p>';
-        div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>40-100</p>';
+        div.innerHTML += '<b># Airports</b><br />';
+        div.innerHTML += '<i style="background: ' + colors[4] + '; opacity: 0.5"></i><p>60+</p>';
+        div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>40-60</p>';
         div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>20-40</p>';
-        div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>1-20</p>';
-        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p>0</p>';
-        div.innerHTML += '<hr><b><h2>Air Traffic Towers</h2><b><br />';
-        div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p>Yes Control Tower</p>';
-        div.innerHTML += '<i class="fa fa-plane marker-color-2"></i><p>No Control Tower</p>';
+        div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p> 0-20</p>';
+        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p> 0</p>';
+        div.innerHTML += '<hr><b>Has air traffic control tower?<b><br />';
+        div.innerHTML += '<i class="fa fa-paper-plane marker-color-1"></i><p>Yes control tower</p>';
+        div.innerHTML += '<i class="fa fa-paper-plane marker-color-2"></i><p>No control tower</p>';
         // Return the Legend div containing the HTML content
         return div;
     };
@@ -155,7 +151,7 @@
     // 11. Add a legend to map
     legend.addTo(mymap);
 
-// 12. Add a scale bar to map
+    // 12. Add a scale bar to map
     L.control.scale({position: 'bottomleft'}).addTo(mymap);
 
 </script>

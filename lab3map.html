@@ -80,7 +80,7 @@
     // Get GeoJSON and put on it on the map when it loads
     airPort_Name= L.geoJson.ajax("assets/airports.geojson", {
         onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.AIRPT_NAME);
+            layer.bindPopup(feature.properties.CNTRL_TWR);
         },
         pointToLayer: function (feature, latlng) {
             var id = 0;
@@ -119,8 +119,8 @@
     }
 
 
-    // 8. Add county polygons
-    // create counties variable, and assign null to it.
+    // 8. Add states
+    // create states variable, and assign null to it.
     var states = null;
         states = L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
         L.geoJson.ajax("assets/counties.us-states",{
@@ -150,7 +150,7 @@
         return div;
     };
 
-    // 11. Add a legend to mapl
+    // 11. Add a legend to map
     legend.addTo(mymap);
 
     // 12. Add a scale bar to map

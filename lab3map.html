@@ -84,7 +84,7 @@
       onEachFeature: function (feature, layer) {
       layer.bindPopup(feature.properties.AIRPT_NAME);
       },
-      pointToLayer: function (feature,latlng) {
+      pointToLayer: function (feature, latlng) {
       var id = 0;
       if (feature.properties.CNTL_TWR == "Y") { id = 0; }
       else if (feature.properties.CNTL_TWR == "N")  { id = 1; }

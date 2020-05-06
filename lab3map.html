@@ -97,11 +97,9 @@
            }).addTo(mymap);
 
     // 6. Set function for color ramp
-    colors = chroma.scale('Blues').colors(9);
+    colors =chroma.scale('Blues').colors(9);
 
     function setColor(count) {
-        var id = 0;
-        if (count > 100) { id = 4; }
         else if (count > 40 && count <= 100) { id = 3; }
         else if (count > 20 && count <= 40) { id = 2; }
         else if (count > 1 && count <= 20) { id = 1; }
@@ -126,11 +124,9 @@
     // create state variable
 
     var states = null;
-        states = L.geoJson.ajax("assets/us-states.geojson").addTo(mymap);
-        L.geoJson.ajax("assets/counties.us-states",{
-            style: style
-        }).addTo(mymap);
-
+    states = L.geoJson.ajax("assets/us-states.geojson",{
+        style: style
+    }).addTo(mymap);
 
 
     // 9. Create Leaflet Control Object for Legend

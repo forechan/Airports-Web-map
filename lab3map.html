@@ -121,11 +121,11 @@
 
     // 8. Add states
     // create states variable, and assign null to it.
+
     var states = null;
-    states = L.geoJson.ajax("assets/us-states.geojson",{
+    states = L.geoJson.ajax("assets/us-states.geojson", {
         style: style
     }).addTo(mymap);
-
 
     // 9. Create Leaflet Control Object for Legend
     var legend = L.control({position: 'bottomleft'});

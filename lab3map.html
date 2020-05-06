@@ -86,9 +86,9 @@
             var id = 0;
             if (feature.properties.CNTL_TWR == "Y") { id = 0; }
             else if (feature.properties.CNTL_TWR == "N")  { id = 1; }
-            return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-paper-plane marker-color-' + (id + 1).toString() })});
+            return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
         },
-        attribution: 'Airport Data &copy; Data.gov | US States &copy; Mike Bostock | Base Map &copy; CartoDB | Made By Xiao Ye Chen'
+        attribution: 'Airport Data &copy; Data.gov | US States &copy; Mike Bostock D3 | Base Map &copy; ESRI | Made By Foresty Chan'
     }).addTo(mymap);
 
 
@@ -130,7 +130,7 @@
 
 
     // 9. Create Leaflet Control Object for Legend
-    var legend = L.control({position: 'bottomright'});
+    var legend = L.control({position: 'bottomleft'});
 
     // 10. Function that runs when legend is added to map
     legend.onAdd = function () {
@@ -150,7 +150,7 @@
         return div;
     };
 
-    // 11. Add a legend to map
+    // 11. Add a legend to mapl
     legend.addTo(mymap);
 
     // 12. Add a scale bar to map

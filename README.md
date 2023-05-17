@@ -3,7 +3,7 @@
 <img src = "https://i.ibb.co/nBz2Xkr/Capture2.png">
 
 
-This lab was created so we could learn how to make an interactive web map. Although the only interaction is clicking on an airplane icon and a popup will apepear.
+This lab was created so we could learn how to make an interactive web map. Although the only interaction is clicking on an airplane icon and a popup will appear.
 
 Here is a link to the [interactive map](https://forechan.github.io/Airports-Web-map/lab3map.html)
 
